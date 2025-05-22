@@ -12,8 +12,18 @@ public class CardBox
     private HashMap<Integer, Card> box; // "Integer" is id, "Card" is the card
     private int cardId; // stores card id to add to new cards
     private Card foundCard;
+    
     // constants
     static final String DEFAULTIMAGE = "defaultImage.png";
+    
+    // image var
+    private double imgBottom;
+    private double imgRight;
+    
+    private int imgLeft = 75; // image x start position
+    private int imgTop = 75; // image y start position
+    private double imgWidth = 250; // fixed image width
+    private double imgHeight = 345; // fixed image height
 
     /**
      * Constructor for objects of class CardBox
@@ -29,6 +39,11 @@ public class CardBox
         addCard("Bulbasaur", 3);
         addCard("Squirtle", 6.98);
         addCard("Charmander", 8.09);
+    }
+    
+    public void setImageLoc(){
+        imgBottom = imgTop + imgHeight;
+        imgRight = imgLeft + imgWidth;
     }
     
     /**
@@ -52,9 +67,10 @@ public class CardBox
 
     public void printAllGUI(){
         for (int cardKey : box.keySet()){
-            UI.println(cardKey + " Details: ");
-            UI.println(box.get(cardKey).getName() + " "
-            + box.get(cardKey).getValue());        
+            UI.println(cardKey + " Info: ");
+            UI.println("Pokémon Name: " + box.get(cardKey).getName());
+            UI.println("Card Value: $" + box.get(cardKey).getValue());
+            UI.println();
         }
     }
     
@@ -86,15 +102,11 @@ public class CardBox
     public void displayCard(Card card){
         UI.println("Card Name: " + card.getName());
         UI.println("Card Value: $" + card.getValue());
-    
-        int locX = 100; // image x start position
-        int locY = 100; // image y start position
         
-        final double WIDTH = 250;
-        final double HEIGHT = 300;
-        
-        UI.drawImage(card.getImage(), locX, locY, WIDTH, HEIGHT);
-        
+        UI.drawImage(card.getImage(), imgLeft, imgTop, imgWidth, imgHeight);
     }
     
+    public int getBoxLeng(){
+        return box.size();
+    }
 }
