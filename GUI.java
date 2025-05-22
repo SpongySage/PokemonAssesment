@@ -1,10 +1,9 @@
 import ecs100.*;
 import java.util.HashMap;
 /**
- * Write a description of class GUI here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * GUI class
+ * GUI has buttons and a search bar
+ * a graphics and text pane
  */
 public class GUI
 {
@@ -27,12 +26,12 @@ public class GUI
         
         // sidebar buttons
         UI.addButton("Print All", cardBox::printAllGUI);
-        /**
-        
         UI.addButton("Clear", this::clearPanes);
         UI.addButton("Add Card", this::addCard);
-        */
         UI.addButton("Quit", UI::quit);
+        
+        // mouse listener
+        UI.setMouseListener(this::doMouse);
     }
     
     /**
@@ -50,9 +49,42 @@ public class GUI
                 cardBox.clearFoundCard(); // clears found card, not used again
                 
                 cardBox.displayCard(card); // displays card info and image
+                UI.println();
             }else{
                 UI.println("Card could not be found");
             }
         }
+    }
+    
+    public void clearPanes(){
+        UI.clearText();
+        UI.clearGraphics();
+    }
+    
+    public void addCard(){
+        final int MAX_LENGTH = 50; // max amount of obj in hashmap
+        final int MAX_VALUE = 5275000; // max pokemon card value based on highest value card
+        double value;
+        
+        // ask user for card info
+        String name = UI.askString("Pokémon Name: ");
+        do {
+            value = UI.askDouble("Value Of Card: $");
+            if (value <= 0){
+                UI.println("Card value must be higher than 0");
+            }else if (value > MAX_VALUE){
+                UI.println("Card value must be below $" + MAX_VALUE);
+            }
+        }while (value < 0 || value > MAX_VALUE);
+        String imageFile = UIFileChooser.open("Select Image: ");
+        
+        cardBox.addCard(name, value, imageFile);
+        UI.println();
+        UI.println(name + " has been added");
+        UI.println();
+    }
+    
+    public void doMouse(String action, double xPos, double yPos){
+        
     }
 }
