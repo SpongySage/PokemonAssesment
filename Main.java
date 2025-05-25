@@ -1,11 +1,14 @@
 /**
- * Write a description of class Main here.
+ * Main class
+ * Runs GUI
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Sage Ripley-Cornwell
  */
 public class Main
 {
+    /**
+     * main routine
+     */
     public static void main(String[] args) {
         new GUI();
     }
