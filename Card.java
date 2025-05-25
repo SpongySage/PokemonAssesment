@@ -1,20 +1,17 @@
-
 /**
- * Write a description of class Cards here.
+ * Class Card
+ * Card has: id, name, value, image
+ * card has getters for each variable
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Sage Ripley-Cornwell
  */
 public class Card
 {
-    // instance variables - replace the example below with your own
+    // instance variables
     private int id;
     private String name;
     private double value;
     private String image;
-    
-    // constants
-    static final String DEFAULTIMAGE = "defaultImage.png";
         
     /**
      * Constructor for objects of class Cards
