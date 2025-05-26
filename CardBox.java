@@ -25,8 +25,8 @@ public class CardBox
     // var for displaying image
     private int imgLeft = 75; // image x start position
     private int imgTop = 75; // image y start position
-    private double imgWidth = 250; // fixed image width
-    private double imgHeight = 345; // fixed image height
+    private double imgWidth = 245; // fixed image width
+    private double imgHeight = 342; // fixed image height
 
     /**
      * Constructor for objects of class CardBox
@@ -39,9 +39,16 @@ public class CardBox
         cardId = 0; // sets card id to 0 so it is not null
         
         // add cards to collection
-        addCard("Bulbasaur", 3);
-        addCard("Squirtle", 6.98);
-        addCard("Charmander", 8.09);
+        addCard("Oricorio", 1.24, "oricorio.jpg");
+        addCard("Quaxly", 64.93, "quaxly.jpg");
+        addCard("Fletchling", 1.89, "fletchling.jpg");
+        addCard("Horsea", 34.84, "horsea.jpg");
+        addCard("Trubbish", 37.14, "trubbish.jpg");
+        addCard("Murkrow", 1.99, "murkrow.jpg");
+        addCard("Vanillite", 37.87, "vanillite.jpg");
+        addCard("Feebas", 34.89, "feebas.jpg");
+        addCard("Pawmi", 35.32, "pawmi.png");
+        addCard("Wo-Chien", 8.49, "wo-chien.jpg");
         
         // initialize image location
         setImageLoc();
