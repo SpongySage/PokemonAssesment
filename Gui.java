@@ -36,10 +36,10 @@ public class Gui {
     UI.addButton("Quit", UI::quit);
         
     // mouse listener
-    UI.setMouseListener(this::doMouse);
+    UI.setMouseListener(this::doMouseTest);
         
     // testing button, change to different methods as needed
-    UI.addButton("Test", this::printAllVar);
+    // UI.addButton("Test", this::printAllVar);
   }
 
   /**
@@ -49,18 +49,22 @@ public class Gui {
    */
   public void searchCard(String cardSearch) {
     int searchLeng = cardSearch.trim().length();
-    if ((cardSearch.trim() != null) && (searchLeng > 0) && (searchLeng < 100)) {
-      if (cardBox.isCardInBox(cardSearch.toLowerCase().trim())) {
-        UI.println("Card found!");
+    if ((cardSearch.trim() != null) && (searchLeng > 0)) {
+      if (searchLeng < 100) {
+        if (cardBox.isCardInBox(cardSearch.toLowerCase().trim())) {
+          UI.println("Card found!");
                 
-        card = cardBox.getFoundCard(); // gets card info of card that was found
-        cardBox.clearFoundCard(); // clears found card, so not used again
+          card = cardBox.getFoundCard(); // gets card info of card that was found
+          cardBox.clearFoundCard(); // clears found card, so not used again
                 
-        cardBox.displayCard(card); // displays card info and image
-        cardDisplayed = true;
-        UI.println();
+          cardBox.displayCard(card); // displays card info and image
+          cardDisplayed = true;
+          UI.println();
+        } else {
+          UI.println("Card could not be found");
+        }
       } else {
-        UI.println("Card could not be found");
+        UI.println("Search length is too long.");
       }
     }
   }
@@ -98,7 +102,7 @@ public class Gui {
         } else if (value > max_value) {
           UI.println("Card value must be below $" + max_value);
         }
-      } while (value < 0 || value > max_value);
+      } while (value <= 0 || value > max_value);
       // prompts user to select image
       String imageFile = UIFileChooser.open("Select Image: ");
           
@@ -134,18 +138,17 @@ public class Gui {
    */
   public void doMouseTest(String action, double x, double y) {
     if (action.equals("clicked")) {
-      System.out.println("clicked");
-      if (cardDisplayed) {
-        System.out.println("Clicked + card visable");
-        if ((x > cardBox.getImgLeft()) && (x < cardBox.getImgRight())
-            && (y > cardBox.getImgTop()) && (y < cardBox.getImgBottom())) {
-          System.out.println("Image Clicked");
-        } else {
-          System.out.println("missed!");
-        }
+      System.out.println("Mouse Clicked");
+      if ((x > cardBox.getImgLeft()) && (x < cardBox.getImgRight())
+          && (y > cardBox.getImgTop()) && (y < cardBox.getImgBottom()) 
+          && (cardDisplayed)) {
+        System.out.println("Image Clicked");
+      } else {
+        System.out.println("Image not clicked!");
       }
     }
   }
+
   
   /**
    * prints all values of current variables.

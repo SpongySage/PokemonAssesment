@@ -73,7 +73,13 @@ public class CardBox {
    */
   public void addCard(String name, double value, String image) { //passed in String image
     genNextId();
-    box.put(cardId, new Card(cardId, name, value, image));
+    String img;
+    if (image == null) {
+      img = DEFAULT_IMAGE;
+    } else {
+      img = image;
+    }
+    box.put(cardId, new Card(cardId, name, value, img));
   }
   
   public void addCard(String name, double value) { // String image not passed in
