@@ -36,7 +36,7 @@ public class Gui {
     UI.addButton("Quit", UI::quit);
         
     // mouse listener
-    UI.setMouseListener(this::doMouseTest);
+    UI.setMouseListener(this::doMouse);
         
     // testing button, change to different methods as needed
     // UI.addButton("Test", this::printAllVar);
